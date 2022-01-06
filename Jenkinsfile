@@ -1,5 +1,6 @@
 pipeline
 {
+	agent { node { label 'James' } }
 	stages 
 	{
 				stage('static-analysis')

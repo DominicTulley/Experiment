@@ -1,5 +1,6 @@
 pipeline
 {
+	agent any
 	stages 
 	{
 				stage('static-analysis')
@@ -12,19 +13,7 @@ pipeline
 							exit 0;
 						'''
 					}
-					post
-					{
-						always
-						{
-							recordIssues qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], tools: [checkStyle(pattern: '**/checkstyle-result.xml, **/eslint-checkstyle.xml'), pmdParser(pattern: '**/target/pmd.xml')]
-
-							bitbucketNotify("[Complete] Static Code Analysis", "StaticAnalysisPhase", false)
-							echo "Static analysis result: ${currentBuild.result}"
-						}
-					}
 				}
-			}
-		}
 	}
 	post 
 	{

@@ -1,6 +1,6 @@
 pipeline
 {
-	agent { node { label 'Jenkins' } }
+	agent { any }
 	stages 
 	{
 				stage('static-analysis')
